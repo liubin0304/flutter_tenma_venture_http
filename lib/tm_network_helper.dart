@@ -7,7 +7,7 @@ import 'package:flutter_tenma_venture_http/config/http_config.dart';
 import 'package:flutter_tenma_venture_http/service/http_service.dart';
 import 'package:flutter_tenma_venture_http/utils/data_base_utils.dart';
 
-class NetworkHelper {
+class TMNetworkHelper {
   Dio _dio;
 
   // 服务器地址
@@ -46,77 +46,77 @@ class NetworkHelper {
   // 是否强制更新所有配置
   bool isForce = false;
 
-  factory NetworkHelper() => _getInstance();
+  factory TMNetworkHelper() => _getInstance();
 
-  static NetworkHelper _instance;
+  static TMNetworkHelper _instance;
 
-  static NetworkHelper _getInstance() {
+  static TMNetworkHelper _getInstance() {
     if (_instance == null) {
-      _instance = NetworkHelper._init();
+      _instance = TMNetworkHelper._init();
     }
     return _instance;
   }
 
-  NetworkHelper._init() {
+  TMNetworkHelper._init() {
     print("NetworkHelper._init");
   }
 
-  NetworkHelper setBaseUrl(String baseUrl) {
+  TMNetworkHelper setBaseUrl(String baseUrl) {
     this.baseUrl = baseUrl;
     return this;
   }
 
-  NetworkHelper setDebug(bool isDebug) {
+  TMNetworkHelper setDebug(bool isDebug) {
     this.isDebug = isDebug;
     return this;
   }
 
-  NetworkHelper setCookie(bool isCookie) {
+  TMNetworkHelper setCookie(bool isCookie) {
     this.isCookie = isCookie;
     return this;
   }
 
-  NetworkHelper setEncrypt(bool isEncrypt) {
+  TMNetworkHelper setEncrypt(bool isEncrypt) {
     this.isEncrypt = isEncrypt;
     return this;
   }
 
-  NetworkHelper setHeaders(Map<String, dynamic> headers) {
+  TMNetworkHelper setHeaders(Map<String, dynamic> headers) {
     this.isEncrypt = isEncrypt;
     return this;
   }
 
-  NetworkHelper setConnectTimeout(int connectTimeout) {
+  TMNetworkHelper setConnectTimeout(int connectTimeout) {
     this.connectTimeout = connectTimeout;
     return this;
   }
 
-  NetworkHelper setReceiveTimeout(int receiveTimeout) {
+  TMNetworkHelper setReceiveTimeout(int receiveTimeout) {
     this.receiveTimeout = receiveTimeout;
     return this;
   }
 
-  NetworkHelper setContentType(String contentType) {
+  TMNetworkHelper setContentType(String contentType) {
     this.contentType = contentType;
     return this;
   }
 
-  NetworkHelper setResponseType(ResponseType responseType) {
+  TMNetworkHelper setResponseType(ResponseType responseType) {
     this.responseType = responseType;
     return this;
   }
 
-  NetworkHelper setCacheMode(CacheMode cacheMode) {
+  TMNetworkHelper setCacheMode(CacheMode cacheMode) {
     this.cacheMode = cacheMode;
     return this;
   }
 
-  NetworkHelper addInterceptors(List<InterceptorsWrapper> interceptors) {
+  TMNetworkHelper addInterceptors(List<InterceptorsWrapper> interceptors) {
     this.interceptors = interceptors;
     return this;
   }
 
-  NetworkHelper setForce(bool isForce) {
+  TMNetworkHelper setForce(bool isForce) {
     this.isForce = isForce;
     return this;
   }
@@ -161,10 +161,6 @@ class NetworkHelper {
 
         LogUtil.init(isDebug: isDebug);
 
-        // HttpConfig.isEncrypt = isEncrypt;
-        HttpConfig.isDebug = isDebug;
-        // HttpConfig.cacheMode = cacheMode;
-        //
         DioManager().init(_dio);
         return true;
       }

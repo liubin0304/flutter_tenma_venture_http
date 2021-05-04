@@ -64,6 +64,7 @@ class DioManager {
   }
 
   Dio _dio;
+  bool isDebug;
 
   DioManager._init() {
     print("DioManager._init");
@@ -73,18 +74,6 @@ class DioManager {
   void init(Dio dio) {
     if (_dio == null) {
       _dio = dio;
-
-      // // 设置 Dio 默认配置
-      // _dio = Dio(BaseOptions(
-      //     // 请求基地址
-      //     baseUrl: HttpConfig.baseUrl,
-      //     // 连接服务器超时时间，单位是毫秒
-      //     connectTimeout: 60 * 1000,
-      //     // 接收数据的最长时限
-      //     receiveTimeout: 60 * 1000,
-      //     // Http请求头
-      //     headers: {}));
-      //
 
       // 请求与响应拦截器
       _dio.interceptors.add(OnReqResInterceptors());
@@ -421,17 +410,15 @@ class OnReqResInterceptors extends InterceptorsWrapper {
   /// 请求拦截
   @override
   Future onRequest(RequestOptions options) {
-    if (HttpConfig.isDebug) {
-      LogUtil.v("请求baseUrl：${options.baseUrl}");
-      LogUtil.v("请求url：${options.path}");
-      LogUtil.v('请求头: ${options.headers.toString()}');
+    LogUtil.v("请求baseUrl：${options.baseUrl}");
+    LogUtil.v("请求url：${options.path}");
+    LogUtil.v('请求头: ${options.headers.toString()}');
 
-      if (options.data != null) {
-        LogUtil.v('请求参数: ${options.data.toString()}');
-      }
-      if (options.queryParameters.length > 0 ?? false) {
-        LogUtil.v('请求参数: ${options.queryParameters.toString()}');
-      }
+    if (options.data != null) {
+      LogUtil.v('请求参数: ${options.data.toString()}');
+    }
+    if (options.queryParameters.length > 0 ?? false) {
+      LogUtil.v('请求参数: ${options.queryParameters.toString()}');
     }
 
     return super.onRequest(options);
@@ -478,9 +465,7 @@ class OnReqResInterceptors extends InterceptorsWrapper {
         } catch (e) {}
       }
     }
-    if (HttpConfig.isDebug) {
-      LogUtil.v('请求结果:' + res.data?.toString());
-    }
+    LogUtil.v('请求结果:' + res.data?.toString());
     return super.onResponse(res);
   }
 }
@@ -490,10 +475,8 @@ class OnErrorInterceptors extends InterceptorsWrapper {
   /// 异常拦截
   @override
   Future onError(DioError err) {
-    if (HttpConfig.isDebug) {
-      LogUtil.e('请求异常: ${err.toString()}');
-      LogUtil.e('请求异常信息: ${err.response?.toString() ?? ""}');
-    }
+    LogUtil.e('请求异常: ${err.toString()}');
+    LogUtil.e('请求异常信息: ${err.response?.toString() ?? ""}');
     // 异常分类
     switch (err.type) {
       // 4xx 5xx response

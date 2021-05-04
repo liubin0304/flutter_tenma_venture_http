@@ -1,12 +1,5 @@
 class HttpConfig {
-  // // 是否加密
-  // static bool isEncrypt = false;
-  //
-  // 是否是调试模式
-  static bool isDebug = false;
-  //
-  // // 缓存类型
-  // static CacheMode cacheMode = CacheMode.NO_CACHE;
+  //TODO 配置
 }
 
 enum CacheMode {

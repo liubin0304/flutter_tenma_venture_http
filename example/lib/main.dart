@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tenma_venture_http/config/http_config.dart';
 import 'package:flutter_tenma_venture_http/models/base_model.dart';
-import 'package:flutter_tenma_venture_http/network_helper.dart';
+import 'package:flutter_tenma_venture_http/tm_network_helper.dart';
 import 'package:flutter_tenma_venture_http/service/http_service.dart';
 import 'package:flutter_tenma_venture_http/service/tm_encryption_tool.dart';
 import 'package:path_provider/path_provider.dart';
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future<bool> initNetworkHelper() async {
     // 初始化网络请求
-    return NetworkHelper()
+    return TMNetworkHelper()
         .setBaseUrl("http://fcjfapptest.tianma3600.com")
         .setDebug(true)
         .setCacheMode(CacheMode.REQUEST_FAILED_READ_CACHE)

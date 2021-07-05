@@ -15,13 +15,13 @@ import './tm_encryption_tool.dart';
 import '../models/base_model.dart';
 
 ///http请求成功回调
-typedef HttpSuccessCallback<T> = void Function(BaseModel data);
+typedef HttpSuccessCallback<T> = void Function(T data);
 
 ///失败回调
 typedef HttpFailureCallback = void Function(int code, String msg);
 
 /// 文件下载成功回调
-typedef DownloadSuccessCallback<T> = void Function(Response data);
+typedef DownloadSuccessCallback<T> = void Function(T data);
 
 /// 文件下载失败回调
 typedef DownloadFailureCallback = void Function(dynamic onError);
